@@ -13,7 +13,7 @@ Plus a few things it can't:
 - paste clipboard output
 - post anonymously even if a global git config exists
 - specify file name
-- or specify file type
+- specify file type
 
 This script cannot "read" gists like defunkt's script can.  I
 plan to create a gistcopy script for that at some point.
