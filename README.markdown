@@ -2,16 +2,16 @@ Gistpaste: Command line paste script
 ====================================
 
 This script can do all that the [defunkt gist script](http://github.com/defunkt/gist/tree) can:
- - paste a file
- - paste from stdin
- - authenticate
+- paste a file
+- paste from stdin
+- authenticate
 
 Plus a few things it can't:
- - paste multiple files at once
- - paste clipboard output
- - post anonymously even if a global git config exists
- - specify file name
- - or specify file type.
+- paste multiple files at once
+- paste clipboard output
+- post anonymously even if a global git config exists
+- specify file name
+- or specify file type.
 
 This script cannot "read" gists like defunkt's script can.  I
 plan to create a gistcopy script for that at some point.
