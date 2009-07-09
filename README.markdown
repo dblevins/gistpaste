@@ -30,6 +30,10 @@ Download and install
 Add any Perl modules you may not have
 
     sudo cpan LWP::UserAgent
+
+And an optional module if your system's "which" command is disabled
+for security reasons
+
     sudo cpan File::Which
 
 Usage

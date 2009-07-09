@@ -5,7 +5,6 @@ use warnings;
 use Getopt::Long;
 use LWP::UserAgent;
 use File::Basename qw(basename);
-use File::Which qw(which);
 use Pod::Usage;
 
 my %opts = ();
@@ -72,6 +71,16 @@ sub toclip {
     open(C, $schema) or die "Ubable to open handle $schema: $!\n";
     print C $content;
     close C;
+}
+
+sub which {
+    my $cmd = shift;
+
+    if (eval "require File::Which; 1") {
+        return File::Which::which($cmd);
+    } else {
+        return `which $cmd`;
+    }
 }
 
 #
