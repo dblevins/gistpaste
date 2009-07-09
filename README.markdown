@@ -1,6 +1,3 @@
-[[meta title="__gistpaste__ - Command line paste script for gist.github.com"]]
-[[meta author="David Blevins <david.blevins@visi.com>"]]
-
 Gistpaste: Command line paste script
 ====================================
 
@@ -35,16 +32,16 @@ __gistpaste__ [options] [FILE...]
 
 - Paste file(s)
 
-gistpaste thatfile.txt another.diff
+  gistpaste thatfile.txt another.diff
 
 - Paste STDIN
 
-grep "this" thatfile.txt | gistpaste
+  grep "this" thatfile.txt | gistpaste
  
 
 - Paste the clipboard contents
 
-gistpaste -c
+  gistpaste -c
 
 # DESCRIPTION
 
@@ -105,38 +102,38 @@ The `LWP::UserAgent` and `File::Which` modules are required.
 
 Paste a single file
 
-  % gistpaste thatfile.txt
+  gistpaste thatfile.txt
 
 Paste multiple files of varying types
 
-  % gistpaste thatfile.txt Some.java another.pl
+  gistpaste thatfile.txt Some.java another.pl
 
 Paste a single file and override the name, all functionally equivalent.
 
-  % gistpaste --name=thatfile.diff thatfile.txt
-  % gistpaste --name=thatfile.diff < thatfile.txt
-  % cat thatfile.txt | gistpaste --name=thatfile.diff
+  gistpaste --name=thatfile.diff thatfile.txt
+  gistpaste --name=thatfile.diff < thatfile.txt
+  cat thatfile.txt | gistpaste --name=thatfile.diff
 
 Paste from STDIN
 
-  % grep "this" thatfile.txt | gistpaste
-  % svn diff thatfile.txt | gistpaste -t diff 
-  % gistpaste < thatfile.txt
+  grep "this" thatfile.txt | gistpaste
+  svn diff thatfile.txt | gistpaste -t diff 
+  gistpaste < thatfile.txt
 
 Copy content to the system clipboard and paste it
 
-  % gistpaste -c
-  % gistpaste -c -t xml
-  % gistpaste -c -n mydata.xml
+  gistpaste -c
+  gistpaste -c -t xml
+  gistpaste -c -n mydata.xml
 
 Paste a file without the name so Gist will not ignore the type
 parameter
 
-  % gistpaste --name=" " -t diff thatfile.txt
-  % gistpaste -t diff < thatfile.txt
-  % cat thatfile.txt | gistpaste -t diff
+  gistpaste --name=" " -t diff thatfile.txt
+  gistpaste -t diff < thatfile.txt
+  cat thatfile.txt | gistpaste -t diff
 
 # AUTHOR
 
-David Blevins <david.blevins@visi.com>
+David Blevins <dblevins@visi.com>
 
