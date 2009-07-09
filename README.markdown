@@ -1,15 +1,23 @@
 Gistpaste: Command line paste script
 ====================================
 
-This script can do all that the "defunkt/gist" script can, plus it can
-post multiple files, post clipboard output, post anonymously even if a
-global git config exists, specify file name, or specify file type.  I
-would have fixed that script, but I don't know Ruby (sorry defunkt!).
+This script can do all that the [defunkt gist script](http://github.com/defunkt/gist/tree) can:
+ - paste a file
+ - paste from stdin
+ - authenticate
 
-This script cannot "read" gists like the "defunkt/gist" script can.  I
+Plus a few things it can't:
+ - paste multiple files at once
+ - paste clipboard output
+ - post anonymously even if a global git config exists
+ - specify file name
+ - or specify file type.
+
+This script cannot "read" gists like defunkt's script can.  I
 plan to create a gistcopy script for that at some point.
 
-# INSTALLATION
+Installation
+------------
 
 Download and install
 
@@ -22,11 +30,8 @@ Add any Perl modules you may not have
     sudo cpan install LWP::UserAgent
     sudo cpan install File::Which
 
-# NAME
-
-__gistpaste__ - Command line paste script for gist.github.com
-
-# SYNOPSIS
+Usage
+-----
 
 __gistpaste__ [options] [FILE...]
 
@@ -43,18 +48,18 @@ Paste the clipboard contents
 
     gistpaste -c
 
-# DESCRIPTION
+Authentication
+--------------
 
-Pastes content to gist.github.com, a fullly featured paste bin.
-Resulting paste URL is printed to STDOUT and coppied to clipboard.
-Pastes can be generated from files, STDIN and the system clipboard.
-Clipboard support relies on either __pbpaste__ or __xclip__.
+Authentication is not required -- and can be shut off for a paste even once enabled -- but if you'd like to paste as yourself rather than anonymously, just setup your global git config like so:
 
-Pastes may be done anonymously or authenticated.  See the
-gist.github.com account page at <https://github.com/account> and
-click the 'Global Git Config' for instructions on how to setup
+    git config --global github.user "your-github-username"
+    git config --global github.token "your-github-token"
 
-# OPTIONS
+You can find your GitHub username and token at https://github.com/account by clicking the 'Global Git Config' link.
+
+Options
+-------
 
 - __-h__ or __--help__
 
@@ -91,14 +96,8 @@ parameter in favor of guessing the type based on the file name.
 Reads and posts data from the clipboard via __pbpaste__ or __xclip__ if
 available.
 
-# PREREQUISITES
-
-The `LWP::UserAgent` and `File::Which` modules are required.
-
-    sudo cpan install LWP::UserAgent
-    sudo cpan install File::Which
-
-# EXAMPLES
+Examples
+--------
 
 Paste a single file
 
@@ -133,7 +132,8 @@ parameter
     gistpaste -t diff < thatfile.txt
     cat thatfile.txt | gistpaste -t diff
 
-# AUTHOR
+Author
+------
 
 David Blevins <dblevins@visi.com>
 
