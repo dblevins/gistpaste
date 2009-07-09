@@ -29,8 +29,8 @@ Download and install
 
 Add any Perl modules you may not have
 
-    sudo cpan install LWP::UserAgent
-    sudo cpan install File::Which
+    sudo cpan LWP::UserAgent
+    sudo cpan File::Which
 
 Usage
 -----
