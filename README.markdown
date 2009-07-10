@@ -6,6 +6,7 @@ This script can do all that the [defunkt gist script](http://github.com/defunkt/
 - paste a file
 - paste from stdin
 - authenticate
+- copy URL to clipboard
 
 Plus a few things it can't:
 
@@ -14,6 +15,7 @@ Plus a few things it can't:
 - post anonymously even if a global git config exists
 - specify file name
 - specify file type
+- optionally open paste URL in browser
 
 This script cannot "read" gists like defunkt's script can.  I
 plan to create a gistcopy script for that at some point.
@@ -104,7 +106,7 @@ available.
 
 - __-o__ or __--open__
 
-Open the URL in a browser once after pasting.  Supported via the
+Open the URL in a browser after pasting.  Supported via the
 __open__ command (Mac OSX), or the __xdg-open__ command (Linux) if
 either are available.
 

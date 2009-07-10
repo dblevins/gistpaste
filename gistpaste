@@ -238,9 +238,9 @@ available.
 
 =item B<-o> or B<--open>
 
-Open the URL in a browser once after pasting.  Supported via the
-B<open> command (Mac OSX), or the B<xdg-open> command (Linux) if
-either are available.
+Open the URL in a browser after pasting.  Supported via the B<open>
+command (Mac OSX), or the B<xdg-open> command (Linux) if either are
+available.
 
 =back
 
