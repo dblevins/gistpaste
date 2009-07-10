@@ -9,7 +9,7 @@ use Pod::Usage;
 
 my %opts = ();
 
-GetOptions(\%opts, "help","man","clipboard","private","anonymous","type=s","name=s") or pod2usage(2);
+GetOptions(\%opts, "help","man","clipboard","private","anonymous","type=s","name=s", "open") or pod2usage(2);
 if ($opts{help}) { pod2usage(1);}
 if ($opts{man}) { pod2usage(-exitstatus => 0, -verbose => 2);}
 
@@ -143,7 +143,7 @@ my $ua = LWP::UserAgent->new( agent => "gistpaste" );
 my $res = $ua->post("http://gist.github.com/gists", \%data);
 my $URL = $res->header( 'Location' );
 
-print "$URL";
+print "$URL\n";
 
 #
 # copy URL to clipboard
@@ -154,7 +154,11 @@ if (which("pbcopy")) {
     toclip("| xclip", $URL); 
 }
 
-
+if ($opts{open}) {
+    if (which("open")) {
+	`open $URL`;
+    }
+}
 
 =head1 NAME
 
@@ -229,6 +233,10 @@ parameter in favor of guessing the type based on the file name.
 
 Reads and posts data from the clipboard via B<pbpaste> or B<xclip> if
 available.
+
+=item B<-o> or B<--open>
+
+Open the URL in a browser once after pasting.  Mac OSX only.
 
 =back
 

@@ -102,6 +102,11 @@ parameter in favor of guessing the type based on the file name.
 Reads and posts data from the clipboard via __pbpaste__ or __xclip__ if
 available.
 
+- __-o__ or __--open__
+
+Open the URL in a browser once after pasting.  Mac OSX only.
+
+
 Examples
 --------
 
