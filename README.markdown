@@ -104,8 +104,9 @@ available.
 
 - __-o__ or __--open__
 
-Open the URL in a browser once after pasting.  Mac OSX only.
-
+Open the URL in a browser once after pasting.  Supported via the
+__open__ command (Mac OSX), or the __xdg-open__ command (Linux) if
+either are available.
 
 Examples
 --------
