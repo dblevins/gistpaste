@@ -140,7 +140,7 @@ unless ($opts{anonymous}) {
 # post away
 #
 my $ua = LWP::UserAgent->new( agent => "gistpaste" );
-my $res = $ua->post("http://gist.github.com/gists", \%data);
+my $res = $ua->post("https://gist.github.com/gists", \%data);
 my $URL = $res->header( 'Location' );
 
 print "$URL\n";
