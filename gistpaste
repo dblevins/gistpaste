@@ -6,6 +6,9 @@ use Getopt::Long;
 use LWP::UserAgent;
 use File::Basename qw(basename);
 use Pod::Usage;
+use Data::Dumper;
+
+$ENV{PERL_LWP_SSL_VERIFY_HOSTNAME}=0;
 
 my %opts = ();
 
@@ -17,7 +20,7 @@ my $type = $opts{type};
 my $name = $opts{name};
 my @files = @ARGV;
 my $count = 0;
-my %data = ();
+my @data = ();
 
 #
 # normalize the type if it was supplied
@@ -49,11 +52,14 @@ if ($type) {
 
 sub gistfile {
     my ($name, $ext, $contents) = @_;
-
+    
     $count++;
-    $data{"file_ext[gistfile$count]"} = $ext;
-    $data{"file_name[gistfile$count]"} = $name;
-    $data{"file_contents[gistfile$count]"} = $contents;
+
+    push @data, "gist[description]" => "";
+    push @data, "gist[files][][oid]" => "";
+    push @data, "gist[files][][name]" => $name;
+    push @data, "gist[files][][language]", $ext;
+    push @data, "gist[files][][content]", $contents;
 }
 
 sub slurp {
@@ -81,6 +87,33 @@ sub which {
     } else {
         return `which $cmd`;
     }
+}
+
+########################################################################
+
+#
+# get authentication info, if any
+#
+unless ($opts{anonymous}) {
+    my ($login, $token);
+    if (eval "require Git; 1") {
+	$token = Git::config('github.token');
+    } elsif(which("git")) {
+	chomp($token = `git config --global github.token`);
+    }
+    
+    if ($token) {
+	push @data, "authenticity_token" => $token;
+    }
+}
+
+#
+# private paste?
+#
+if ($opts{private}) {
+    push @data, "gist[public]" => "0";
+} else {
+    push @data, "gist[public]" => "1";
 }
 
 #
@@ -114,34 +147,16 @@ if ($count == 0 ) {
 }
 
 #
-# private paste?
-#
-$data{'private'} = 'on' if $opts{private};
-
-#
-# get authentication info, if any
-#
-unless ($opts{anonymous}) {
-    my ($login, $token);
-    if (eval "require Git; 1") {
-	$login = Git::config('github.user');
-	$token = Git::config('github.token');
-    } elsif(which("git")) {
-	chomp($login = `git config --global github.user`);
-	chomp($token = `git config --global github.token`);
-    }
-    
-    if ($login and $token) {
-	$data{"login"} = $login;
-	$data{"token"} = $token;
-    }
-}
-#
 # post away
 #
 my $ua = LWP::UserAgent->new( agent => "gistpaste" );
-my $res = $ua->post("https://gist.github.com/gists", \%data);
+my $res = $ua->post("https://gist.github.com/gists", \@data);
 my $URL = $res->header( 'Location' );
+
+unless ($URL) {
+    print Dumper($res);
+    exit 100;
+}
 
 print "$URL\n";
 
