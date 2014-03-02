@@ -1,6 +1,6 @@
 # Note
 
-Use the [defunkt gist script](http://github.com/defunkt/gist/tree).  It now has all the same features 
+Use the [defunkt gist script](http://github.com/defunkt/gist).  It now has all the same features 
 and is better maintained -- for very obvious reasons.
 
 Leaving this page here as historic reference.
@@ -8,7 +8,7 @@ Leaving this page here as historic reference.
 Gistpaste: Command line paste script
 ====================================
 
-This script can do all that the [defunkt gist script](http://github.com/defunkt/gist/tree) can:
+This script can do all that the [defunkt gist script](http://github.com/defunkt/gist can:
 
 - paste a file
 - paste from stdin
