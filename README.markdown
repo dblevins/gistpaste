@@ -1,3 +1,10 @@
+# Note
+
+Use the [defunkt gist script](http://github.com/defunkt/gist/tree).  It now has all the same features 
+and is better maintained -- for very obvious reasons.
+
+Leaving this page here as historic reference.
+
 Gistpaste: Command line paste script
 ====================================
 
